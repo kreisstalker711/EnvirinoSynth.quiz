@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>EnvironoSynth.Quiz</title>
+    <style>
+        body {
+            background: linear-gradient(90deg, #008552 0%, #92FE9D 100%);
+        }
+
+        h1 {
+            font-family: Arial impact;
+            color: rgb(36, 86, 14);
+        }
+        h2 {
+            color: #846310;
+            font-size: 26px;
+            font-family: verdana;
+        }
+
+        ul#options-list {
+            color: rgb(2, 86, 17);
+            font-size: 22px;
+            font-family: verdana;
+            }
+        
+	button#next-btn {
+            background-color: orange;
+            color: rgb(254, 255, 255);
+            padding: 10px 16px;
+            border-radius: 11px;
+            border: 3px solid indigo;
+            font-size: 15px;
+            }
+    button#next-btn:hover {
+        background-color: orangered;
+    }
+            div#quiz-container {
+                background-color: #33e27c;
+                padding:  10px;  
+                border: 4px;
+                border-radius: 12px;
+                box-shadow: 20px 10px rgb(91, 11, 4);
+                width: 50%;
+
+                }
+
+            h3 {
+                   color: rgb(11, 42, 134);
+                   font-size: 26px;
+                   font-family: comic Sans MS;
+                }
+           button#more-btn {
+                    background-color: skyblue;
+                    font-size: 13px;
+                    border-radius: 10px;
+                    border: 2px solid white;
+                    }
+            div#bot-section {
+                max-width: fit-content; 
+                margin-left: auto; 
+                margin-right: auto;
+                background-color:rgb(12, 191, 191);
+                box-shadow: 10px 10px rgb(5, 21, 197);
+                text-align: center;
+                font-size: 23px;
+            }
+
+            div#bot-section#button {
+                padding: 12px;
+                border-radius: 12px;
+                border: 2px solid blue;
+                font-size: 11px;
+                width: 45px;
+ 
+            }
+            p {
+                font-size: 25px;
+                font-family: Tahoma;
+                
+            }
+
+            h4 {
+                font-size: 25px;
+                color:#008552
+            }
+
+          
+    </style>
+</head>
+<body>
+    <div style="border: 56px slid green; max-width: fit-content; margin-left: auto; margin-right: auto; padding-bottom: 75px;" id="sming">
+        <h1 style="font-size: 24px;">EnvironoSynth.quiz</h1>
+    </div>
+    
+
+    <div style="max-width: fit-content; margin-left: auto; margin-right: auto;" id="quiz-container">
+        <h2 id="question-text"></h2>
+        <form id="quiz-form">
+            <ul id="options-list"></ul>
+        </form>
+        <button id="next-btn">Next Question</button>
+    </div>
+
+    <div id="bot-section" style="display:none", border:1px solid black; padding:10px; margin-top:20px;">
+        <h3>Support Bot 🤖</h3>
+        <div id="bot-messages"></div>
+        <input type="text" id="ques" placeholder="Do you want to know more??">
+        <button id="more-btn">Submit</button>
+    </div>
+
+    <script>
+        const quizQuestions = [
+            {
+                question: "What is the main cause of global warming?",
+                options: ["Deforestation", "Plastic pollution", "Greenhouse gas emissions", "Acid rain"],
+                correctAnswer: "Greenhouse gas emissions",
+                explanation: "Greenhouse gases trap heat in Earth's atmosphere, causing global warming.",
+                moreInfo: "Burning fossil fuels like coal, oil, and gas releases greenhouse gases that accelerate climate change."
+            },
+            {
+                question: "Which of the following is a renewable resource?",
+                options: ["Coal", "Oil", "Natural gas", "Solar energy"],
+                correctAnswer: "Solar energy",
+                explanation: "Solar energy is renewable because it comes from the sun, which will not run out.",
+                moreInfo: "Solar panels capture sunlight and convert it into electricity without depleting Earth's resources."
+            },
+            {
+                question: "Which gas do plants absorb during photosynthesis?",
+                options: ["Oxygen", "Carbon dioxide", "Nitrogen", "Methane"],
+                correctAnswer: "Carbon dioxide",
+                explanation: "Plants absorb carbon dioxide to produce oxygen and glucose.",
+                moreInfo: "This process helps reduce greenhouse gases and provide clean air."
+            },
+            {
+                question: "What is the process of reusing waste materials called?",
+                options: ["Recycling", "Deforestation", "Composting", "Incineration"],
+                correctAnswer: "Recycling",
+                explanation: "Recycling reduces waste and helps conserve natural resources.",
+                moreInfo: "Plastic, paper, and metal recycling reduces the burden on landfills."
+            },
+            {
+                question: "Which energy source is the most eco-friendly?",
+                options: ["Coal", "Solar", "Petrol", "Diesel"],
+                correctAnswer: "Solar",
+                explanation: "Solar energy is clean and renewable.",
+                moreInfo: "Unlike fossil fuels, solar energy doesn’t emit greenhouse gases."
+            },
+            {
+                question: "What is the effect of cutting down too many trees?",
+                options: ["Ozone layer healing", "Deforestation", "Glacier growth", "Soil improvement"],
+                correctAnswer: "Deforestation",
+                explanation: "Cutting trees leads to deforestation, loss of biodiversity, and climate change.",
+                moreInfo: "Forests regulate rainfall and provide habitats for countless species."
+            },
+            {
+                question: "Which of these is biodegradable?",
+                options: ["Plastic bottle", "Banana peel", "Glass", "Metal can"],
+                correctAnswer: "Banana peel",
+                explanation: "Banana peels decompose naturally, unlike plastics and metals.",
+                moreInfo: "Biodegradable waste returns nutrients to the soil."
+            },
+            {
+                question: "Which of these helps reduce carbon footprint?",
+                options: ["Carpooling", "Burning more coal", "Using more plastic", "Cutting trees"],
+                correctAnswer: "Carpooling",
+                explanation: "Carpooling reduces the number of vehicles on roads and lowers emissions.",
+                moreInfo: "Walking, cycling, and public transport are eco-friendly too."
+            },
+            {
+                question: "Which of these causes water pollution?",
+                options: ["Planting trees", "Industrial waste", "Solar panels", "Wind turbines"],
+                correctAnswer: "Industrial waste",
+                explanation: "Dumping waste into rivers and oceans causes water pollution.",
+                moreInfo: "It harms aquatic life and contaminates drinking water sources."
+            },
+            {
+                question: "Which international agreement focuses on climate change?",
+                options: ["Paris Agreement", "Kyoto Treaty", "Geneva Convention", "Montreal Pact"],
+                correctAnswer: "Paris Agreement",
+                explanation: "The Paris Agreement is a global effort to combat climate change.",
+                moreInfo: "It aims to keep global warming below 2°C compared to pre-industrial levels."
+            }
+        ];
+
+        let currentIndex = 0;
+        let answered = false;
+        let score = 0;
+
+        function showQuestion(index) {
+            const current = quizQuestions[index];
+            const questionText = document.getElementById("question-text");
+            const optionsList = document.getElementById("options-list");
+            const botSection = document.getElementById("bot-section");
+            const botMessages = document.getElementById("bot-messages");
+
+        
+            answered = false;
+            questionText.textContent = current.question;
+            optionsList.innerHTML = "";
+            botSection.style.display = "none";
+            botMessages.innerHTML = "";
+            
+            current.options.forEach(option => {
+                const li = document.createElement("li");
+                const radio = document.createElement("input");
+                radio.type = "radio";
+                radio.name = "quiz-option";
+                radio.value = option;
+
+                
+                const label = document.createElement("label");
+                label.textContent = option;
+
+                li.appendChild(radio);
+                li.appendChild(label);
+                optionsList.appendChild(li);
+
+                // From local storage import/ get  an item
+                name = localStorage.getItem("username");
+
+                radio.onclick = () => {
+                    answered = true;
+                    if (option === current.correctAnswer) {
+                        score++;
+                        alert("🤖 Support Bot: " + name + " Your answer is , ✅ Correct! Well done, Bravo!!");
+                    } else {
+                        alert("🤖 Support Bot: " + name + " Your answer is,❌ Wrong, But Learning is Important, You can correct it. The correct answer is: " + current.correctAnswer);
+                        botSection.style.display = "block";
+                        botMessages.innerHTML = "";
+                        const msg = document.createElement("p");
+                        msg.textContent = "💡 Support Bot: " + current.explanation;
+                        botMessages.appendChild(msg);
+
+                        document.getElementById("more-btn").onclick = () => {
+                            const userInput = document.getElementById("ques").value.trim().toLowerCase();
+                            if (userInput === "yes") {
+                                const moreMsg = document.createElement("p");
+                                moreMsg.textContent = "📘 Extra Info: " + current.moreInfo;
+                                botMessages.appendChild(moreMsg);
+                     
+                            }
+                        };
+                    }
+                };
+            });
+        }
+
+        document.getElementById("next-btn").addEventListener("click", () => {
+            if (!answered) {
+                alert("🤖 Support Bot: " + name + "  ,⚠️ Not complete! Please answer the question before moving on.");
+                return;
+            }
+            currentIndex++;
+            if (currentIndex < quizQuestions.length) {
+                showQuestion(currentIndex);
+            } else {
+                alert( "Support Bot: " + name + "  ,🎉 Thank you for participating! 🌍\nYour Score: " + score + "/" + quizQuestions.length);
+                document.getElementById("quiz-container").innerHTML = "<h2>Thank you for participating! 🌍 </h2><p>Your Score: " + score + "/" + quizQuestions.length + "</p>" + "<h4><pre>There is no Planet B.So Save,Protect,Live";
+                    
+            }
+        });
+
+        showQuestion(currentIndex);
+        </script>
+</body>
+</html>
